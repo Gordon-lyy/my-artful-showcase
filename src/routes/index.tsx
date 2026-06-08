@@ -292,50 +292,51 @@ function Gallery() {
         {total === 0 ? (
           <p className="text-white/40 text-sm">No photos yet.</p>
         ) : (
-          <div className="relative h-[60vh] min-h-[380px] lg:h-[70vh] flex items-center justify-center select-none">
-            {/* Prev peek */}
+          <div className="relative flex items-center justify-center select-none min-h-[60vh] py-8">
+            {/* Prev peek — overlaps under main */}
             {total > 1 && (
               <button
                 aria-label="Previous photo"
                 onClick={() => go(-1)}
-                className="absolute left-0 lg:left-4 top-1/2 -translate-y-1/2 z-10 w-[22%] sm:w-[20%] lg:w-[18%] aspect-[3/4] opacity-40 hover:opacity-70 transition-opacity overflow-hidden bg-neutral-900"
+                className="absolute z-10 left-[2%] sm:left-[6%] lg:left-[10%] top-1/2 -translate-y-1/2 opacity-50 hover:opacity-80 transition-opacity"
                 style={{ filter: "blur(1px)" }}
               >
                 <img
                   src={photos[prevIdx].src}
                   alt={photos[prevIdx].alt}
-                  className="w-full h-full object-cover"
+                  className="block w-auto h-auto max-h-[40vh] sm:max-h-[45vh] lg:max-h-[55vh] max-w-[26vw] sm:max-w-[24vw] lg:max-w-[22vw] object-contain"
                 />
               </button>
             )}
 
-            {/* Main */}
-            <figure className="relative z-20 h-full max-w-[70%] sm:max-w-[65%] lg:max-w-[55%] aspect-[4/5] sm:aspect-[3/4] bg-neutral-900 shadow-2xl shadow-black/60 overflow-hidden">
+            {/* Main — on top */}
+            <figure className="relative z-20 shadow-2xl shadow-black/70">
               <img
                 key={photos[index].id}
                 src={photos[index].src}
                 alt={photos[index].alt}
-                className="w-full h-full object-cover animate-in fade-in duration-500"
+                className="block w-auto h-auto max-h-[60vh] sm:max-h-[65vh] lg:max-h-[75vh] max-w-[70vw] sm:max-w-[60vw] lg:max-w-[55vw] object-contain animate-in fade-in duration-500"
               />
             </figure>
 
-            {/* Next peek */}
+            {/* Next peek — overlaps under main */}
             {total > 1 && (
               <button
                 aria-label="Next photo"
                 onClick={() => go(1)}
-                className="absolute right-0 lg:right-4 top-1/2 -translate-y-1/2 z-10 w-[22%] sm:w-[20%] lg:w-[18%] aspect-[3/4] opacity-40 hover:opacity-70 transition-opacity overflow-hidden bg-neutral-900"
+                className="absolute z-10 right-[2%] sm:right-[6%] lg:right-[10%] top-1/2 -translate-y-1/2 opacity-50 hover:opacity-80 transition-opacity"
                 style={{ filter: "blur(1px)" }}
               >
                 <img
                   src={photos[nextIdx].src}
                   alt={photos[nextIdx].alt}
-                  className="w-full h-full object-cover"
+                  className="block w-auto h-auto max-h-[40vh] sm:max-h-[45vh] lg:max-h-[55vh] max-w-[26vw] sm:max-w-[24vw] lg:max-w-[22vw] object-contain"
                 />
               </button>
             )}
           </div>
         )}
+
 
         {total > 0 && (
           <div className="mt-8 flex items-center justify-center gap-6">
