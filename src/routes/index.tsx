@@ -29,8 +29,7 @@ function Nav() {
   const items = [
     { href: "#about", label: "About" },
     { href: "#work", label: "Work" },
-    { href: "#reel", label: "Reel" },
-    { href: "#contact", label: "Contact" },
+    { href: "#gallery", label: "Gallery" },
   ];
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/40 border-b border-white/5">
@@ -149,7 +148,7 @@ function About() {
 
 type Work = {
   id: string;
-  index: string;
+  sub: string;
   title: string;
   caption: string;
   tag: string;
@@ -160,7 +159,7 @@ type Work = {
 const works: Work[] = [
   {
     id: "photography",
-    index: "02",
+    sub: "02.1",
     title: "Photography",
     caption:
       "Quiet frames from late evenings — instruments, light, and the spaces in between.",
@@ -170,7 +169,7 @@ const works: Work[] = [
   },
   {
     id: "music",
-    index: "03",
+    sub: "02.2",
     title: "Echo Chamber",
     caption:
       "Guitar and drums for a small band that plays bigger than it should.",
@@ -180,7 +179,7 @@ const works: Work[] = [
   },
   {
     id: "animation",
-    index: "04",
+    sub: "02.3",
     title: "Animation",
     caption:
       "Self-taught experiments in frame-by-frame motion — sketches that learn to move.",
@@ -194,47 +193,44 @@ function Work() {
   return (
     <section id="work" className="bg-black text-white py-24 lg:py-32 border-t border-white/5">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="flex items-end justify-between mb-16">
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <span className="h-px w-8 bg-[oklch(0.72_0.18_55)]" />
-              <span className="text-[10px] tracking-[0.3em] uppercase text-white/50">
-                Selected Work
-              </span>
-            </div>
-            <h2 className="text-3xl lg:text-5xl font-light">Three things, on loop.</h2>
+        <div className="mb-16">
+          <div className="flex items-center gap-3 mb-4">
+            <span className="h-px w-8 bg-[oklch(0.72_0.18_55)]" />
+            <span className="text-[10px] tracking-[0.3em] uppercase text-white/50">
+              02 — Selected Work
+            </span>
           </div>
+          <h2 className="text-3xl lg:text-5xl font-light">Three things, on loop.</h2>
         </div>
 
-        <div className="space-y-px bg-white/5">
+        <div className="space-y-20 lg:space-y-28">
           {works.map((w) => (
-            <article
-              key={w.id}
-              className="group grid lg:grid-cols-12 gap-8 bg-black p-6 lg:p-10 items-center"
-            >
-              <div className="lg:col-span-7 overflow-hidden">
-                <div className="aspect-[16/10] overflow-hidden bg-neutral-900">
-                  <img
-                    src={w.image}
-                    alt={w.alt}
-                    loading="lazy"
-                    width={1600}
-                    height={1000}
-                    className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
-                  />
-                </div>
+            <article key={w.id} className="group">
+              <div className="flex items-center gap-3 mb-6 border-t border-white/10 pt-6">
+                <span className="text-[10px] tracking-[0.3em] text-[oklch(0.72_0.18_55)]">
+                  {w.sub}
+                </span>
+                <span className="text-[10px] tracking-[0.3em] uppercase text-white/40">
+                  {w.tag}
+                </span>
               </div>
-              <div className="lg:col-span-5 lg:pl-8">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-[10px] tracking-[0.3em] text-[oklch(0.72_0.18_55)]">
-                    {w.index}
-                  </span>
-                  <span className="text-[10px] tracking-[0.3em] uppercase text-white/40">
-                    {w.tag}
-                  </span>
+              <div className="grid lg:grid-cols-12 gap-8 items-center">
+                <div className="lg:col-span-7 overflow-hidden">
+                  <div className="aspect-[16/10] overflow-hidden bg-neutral-900">
+                    <img
+                      src={w.image}
+                      alt={w.alt}
+                      loading="lazy"
+                      width={1600}
+                      height={1000}
+                      className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+                    />
+                  </div>
                 </div>
-                <h3 className="text-3xl lg:text-4xl font-light mb-4">{w.title}</h3>
-                <p className="text-white/60 leading-relaxed">{w.caption}</p>
+                <div className="lg:col-span-5 lg:pl-8">
+                  <h3 className="text-3xl lg:text-4xl font-light mb-4">{w.title}</h3>
+                  <p className="text-white/60 leading-relaxed">{w.caption}</p>
+                </div>
               </div>
             </article>
           ))}
@@ -244,98 +240,55 @@ function Work() {
   );
 }
 
-function Reel() {
+const galleryImages = [
+  { src: photography.url, alt: "Camera resting on a guitar fretboard", span: "lg:col-span-2 lg:row-span-2" },
+  { src: music.url, alt: "Drum kit lit by warm red stage lights", span: "" },
+  { src: animation.url, alt: "Hand-drawn storyboard sketch", span: "" },
+  { src: portrait.url, alt: "Portrait holding a guitar", span: "lg:col-span-2" },
+  { src: photography.url, alt: "Lens detail", span: "" },
+  { src: music.url, alt: "Stage lights", span: "" },
+];
+
+function Gallery() {
   return (
     <section
-      id="reel"
+      id="gallery"
       className="bg-black text-white py-24 lg:py-32 border-t border-white/5"
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="flex items-center gap-3 mb-4">
           <span className="h-px w-8 bg-[oklch(0.72_0.18_55)]" />
           <span className="text-[10px] tracking-[0.3em] uppercase text-white/50">
-            05 — Reel
+            03 — Gallery
           </span>
         </div>
-        <h2 className="text-3xl lg:text-5xl font-light mb-12">
-          Moving pictures.
+        <h2 className="text-5xl sm:text-7xl lg:text-8xl font-light tracking-tight mb-16 leading-[0.95]">
+          Through
+          <br />
+          <span className="text-white/50">the lens.</span>
         </h2>
 
-        <div className="relative aspect-video w-full overflow-hidden bg-neutral-950 border border-white/10">
-          <video
-            controls
-            preload="metadata"
-            poster={animation.url}
-            className="w-full h-full object-cover"
-          >
-            <source
-              src="https://cdn.coverr.co/videos/coverr-a-drummer-playing-the-drums-7916/1080p.mp4"
-              type="video/mp4"
-            />
-            Your browser does not support video playback.
-          </video>
+        <div className="grid grid-cols-2 lg:grid-cols-4 auto-rows-[180px] lg:auto-rows-[220px] gap-2 lg:gap-3">
+          {galleryImages.map((img, i) => (
+            <figure
+              key={i}
+              className={`relative overflow-hidden bg-neutral-900 group ${img.span}`}
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                loading="lazy"
+                className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
+            </figure>
+          ))}
         </div>
-        <p className="mt-6 text-sm text-white/40 max-w-xl">
-          A short reel — swap this with your own footage anytime.
-        </p>
-      </div>
-    </section>
-  );
-}
 
-function Contact() {
-  return (
-    <section
-      id="contact"
-      className="bg-black text-white py-28 lg:py-40 border-t border-white/5"
-    >
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 grid lg:grid-cols-12 gap-10 items-end">
-        <div className="lg:col-span-8">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="h-px w-8 bg-[oklch(0.72_0.18_55)]" />
-            <span className="text-[10px] tracking-[0.3em] uppercase text-white/50">
-              06 — Contact
-            </span>
-          </div>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-light leading-[1.05]">
-            Let's make
-            <br />
-            <span className="text-white/50">something loud.</span>
-          </h2>
+        <div className="mt-10 flex items-center justify-between text-[10px] tracking-[0.25em] uppercase text-white/30">
+          <span>© {new Date().getFullYear()} Gordon Liu</span>
+          <span>Built with care</span>
         </div>
-        <div className="lg:col-span-4 space-y-4 text-sm">
-          <a
-            href="mailto:hello@gordonliu.example"
-            className="block group border-t border-white/10 pt-4"
-          >
-            <div className="text-[10px] tracking-[0.25em] uppercase text-white/40">
-              Email
-            </div>
-            <div className="mt-1 text-white group-hover:text-[oklch(0.72_0.18_55)] transition-colors">
-              hello@gordonliu.example →
-            </div>
-          </a>
-          <a href="#" className="block group border-t border-white/10 pt-4">
-            <div className="text-[10px] tracking-[0.25em] uppercase text-white/40">
-              Band
-            </div>
-            <div className="mt-1 text-white group-hover:text-[oklch(0.72_0.18_55)] transition-colors">
-              Echo Chamber →
-            </div>
-          </a>
-          <a href="#" className="block group border-t border-white/10 pt-4">
-            <div className="text-[10px] tracking-[0.25em] uppercase text-white/40">
-              Instagram
-            </div>
-            <div className="mt-1 text-white group-hover:text-[oklch(0.72_0.18_55)] transition-colors">
-              @gordon.liu →
-            </div>
-          </a>
-        </div>
-      </div>
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 mt-24 flex items-center justify-between text-[10px] tracking-[0.25em] uppercase text-white/30">
-        <span>© {new Date().getFullYear()} Gordon Liu</span>
-        <span>Built with care</span>
       </div>
     </section>
   );
@@ -348,8 +301,7 @@ function HomePage() {
       <Hero />
       <About />
       <Work />
-      <Reel />
-      <Contact />
+      <Gallery />
     </main>
   );
 }
