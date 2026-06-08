@@ -130,22 +130,16 @@ function AdminPage() {
     setBusy(false);
   }
 
-  function removeUserPhoto(id: string) {
-    const next = userPhotos.filter((p) => p.id !== id);
-    saveUserPhotos(next);
-    setUserPhotos(next);
-  }
-
-  function hideDefault(id: string) {
-    const next = Array.from(new Set([...hidden, id]));
-    saveHiddenDefaults(next);
-    setHidden(next);
-  }
-
-  function restoreDefault(id: string) {
-    const next = hidden.filter((x) => x !== id);
-    saveHiddenDefaults(next);
-    setHidden(next);
+  function removePhoto(photo: GalleryPhoto) {
+    if (photo.kind === "user") {
+      const next = userPhotos.filter((p) => p.id !== photo.id);
+      saveUserPhotos(next);
+      setUserPhotos(next);
+    } else {
+      const next = Array.from(new Set([...hidden, photo.id]));
+      saveHiddenDefaults(next);
+      setHidden(next);
+    }
   }
 
   function logout() {
@@ -192,8 +186,16 @@ function AdminPage() {
     );
   }
 
-  const visibleDefaults = DEFAULT_PHOTOS.filter((p) => !hidden.includes(p.id));
-  const hiddenDefaults = DEFAULT_PHOTOS.filter((p) => hidden.includes(p.id));
+  const hiddenSet = new Set(hidden);
+  const allPhotos: GalleryPhoto[] = [
+    ...DEFAULT_PHOTOS.filter((p) => !hiddenSet.has(p.id)),
+    ...userPhotos.map<GalleryPhoto>((p) => ({
+      id: p.id,
+      src: p.dataUrl,
+      alt: p.alt,
+      kind: "user",
+    })),
+  ];
 
   return (
     <main className="min-h-screen bg-black text-white">
@@ -213,7 +215,7 @@ function AdminPage() {
       </header>
 
       <section className="mx-auto max-w-6xl px-6 lg:px-10 py-16">
-        <h1 className="text-4xl lg:text-5xl font-light mb-2">Gallery uploads</h1>
+        <h1 className="text-4xl lg:text-5xl font-light mb-2">Gallery photos</h1>
         <p className="text-white/50 text-sm mb-10">
           Manage every photo shown in the gallery. Uploads live in this browser only (localStorage), max ~4MB each.
         </p>
@@ -234,63 +236,22 @@ function AdminPage() {
         {err && <p className="-mt-8 mb-8 text-xs text-red-400">{err}</p>}
 
         <div className="text-[10px] tracking-[0.3em] uppercase text-white/40 mb-4">
-          Default photos · {visibleDefaults.length} visible
+          All photos · {allPhotos.length}
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-12">
-          {visibleDefaults.map((p) => (
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          {allPhotos.map((p) => (
             <div key={p.id} className="relative group bg-neutral-900">
               <img src={p.src} alt={p.alt} className="w-full h-48 object-cover" />
               <button
-                onClick={() => hideDefault(p.id)}
-                className="absolute top-2 right-2 bg-black/70 text-white text-[10px] tracking-[0.2em] uppercase px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500"
-              >
-                Hide
-              </button>
-            </div>
-          ))}
-          {visibleDefaults.length === 0 && (
-            <p className="col-span-full text-white/40 text-sm">All default photos hidden.</p>
-          )}
-        </div>
-
-        {hiddenDefaults.length > 0 && (
-          <>
-            <div className="text-[10px] tracking-[0.3em] uppercase text-white/40 mb-4">
-              Hidden defaults · {hiddenDefaults.length}
-            </div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-12">
-              {hiddenDefaults.map((p) => (
-                <div key={p.id} className="relative group bg-neutral-900">
-                  <img src={p.src} alt={p.alt} className="w-full h-48 object-cover opacity-40" />
-                  <button
-                    onClick={() => restoreDefault(p.id)}
-                    className="absolute top-2 right-2 bg-black/70 text-white text-[10px] tracking-[0.2em] uppercase px-2 py-1 hover:bg-[oklch(0.72_0.18_55)] hover:text-black"
-                  >
-                    Restore
-                  </button>
-                </div>
-              ))}
-            </div>
-          </>
-        )}
-
-        <div className="text-[10px] tracking-[0.3em] uppercase text-white/40 mb-4">
-          Your uploads · {userPhotos.length}
-        </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-          {userPhotos.map((p) => (
-            <div key={p.id} className="relative group bg-neutral-900">
-              <img src={p.dataUrl} alt={p.alt} className="w-full h-48 object-cover" />
-              <button
-                onClick={() => removeUserPhoto(p.id)}
+                onClick={() => removePhoto(p)}
                 className="absolute top-2 right-2 bg-black/70 text-white text-[10px] tracking-[0.2em] uppercase px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-500"
               >
                 Remove
               </button>
             </div>
           ))}
-          {userPhotos.length === 0 && (
-            <p className="col-span-full text-white/40 text-sm">No uploads yet.</p>
+          {allPhotos.length === 0 && (
+            <p className="col-span-full text-white/40 text-sm">No photos. Upload some above.</p>
           )}
         </div>
       </section>
