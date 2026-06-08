@@ -242,20 +242,34 @@ function Work() {
   );
 }
 
-const galleryImages = [
-  { src: photoCliff.url, alt: "Photographer beneath a cliff, mountain view", span: "lg:col-span-2 lg:row-span-2" },
-  { src: photoCastle.url, alt: "Edinburgh Castle under dramatic clouds", span: "lg:col-span-2" },
-  { src: photoStation.url, alt: "Edinburgh Waverley station and old town", span: "lg:row-span-2" },
-  { src: photography.url, alt: "Camera resting on a guitar fretboard", span: "" },
-  { src: music.url, alt: "Drum kit lit by warm red stage lights", span: "" },
-  { src: animation.url, alt: "Hand-drawn storyboard sketch", span: "" },
-];
-
 function Gallery() {
-  const [userPhotos, setUserPhotos] = useState<UserPhoto[]>([]);
+  const [photos, setPhotos] = useState<GalleryPhoto[]>([]);
+  const [index, setIndex] = useState(0);
+
   useEffect(() => {
-    setUserPhotos(loadUserPhotos());
+    setPhotos(loadGalleryPhotos());
   }, []);
+
+  const total = photos.length;
+  const go = useCallback(
+    (delta: number) => {
+      if (total === 0) return;
+      setIndex((i) => (i + delta + total) % total);
+    },
+    [total],
+  );
+
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "ArrowLeft") go(-1);
+      if (e.key === "ArrowRight") go(1);
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [go]);
+
+  const prevIdx = total ? (index - 1 + total) % total : 0;
+  const nextIdx = total ? (index + 1) % total : 0;
 
   return (
     <section
@@ -275,39 +289,75 @@ function Gallery() {
           <span className="text-white/50">the lens.</span>
         </h2>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 auto-rows-[180px] lg:auto-rows-[220px] gap-2 lg:gap-3">
-          {galleryImages.map((img, i) => (
-            <figure
-              key={`g-${i}`}
-              className={`relative overflow-hidden bg-neutral-900 group ${img.span}`}
-            >
-              <img
-                src={img.src}
-                alt={img.alt}
-                loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-            </figure>
-          ))}
-          {userPhotos.map((p) => (
-            <figure
-              key={p.id}
-              className="relative overflow-hidden bg-neutral-900 group"
-            >
-              <img
-                src={p.dataUrl}
-                alt={p.alt}
-                loading="lazy"
-                className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
-            </figure>
-          ))}
-        </div>
+        {total === 0 ? (
+          <p className="text-white/40 text-sm">No photos yet.</p>
+        ) : (
+          <div className="relative h-[60vh] min-h-[380px] lg:h-[70vh] flex items-center justify-center select-none">
+            {/* Prev peek */}
+            {total > 1 && (
+              <button
+                aria-label="Previous photo"
+                onClick={() => go(-1)}
+                className="absolute left-0 lg:left-4 top-1/2 -translate-y-1/2 z-10 w-[22%] sm:w-[20%] lg:w-[18%] aspect-[3/4] opacity-40 hover:opacity-70 transition-opacity overflow-hidden bg-neutral-900"
+                style={{ filter: "blur(1px)" }}
+              >
+                <img
+                  src={photos[prevIdx].src}
+                  alt={photos[prevIdx].alt}
+                  className="w-full h-full object-cover"
+                />
+              </button>
+            )}
 
+            {/* Main */}
+            <figure className="relative z-20 h-full max-w-[70%] sm:max-w-[65%] lg:max-w-[55%] aspect-[4/5] sm:aspect-[3/4] bg-neutral-900 shadow-2xl shadow-black/60 overflow-hidden">
+              <img
+                key={photos[index].id}
+                src={photos[index].src}
+                alt={photos[index].alt}
+                className="w-full h-full object-cover animate-in fade-in duration-500"
+              />
+            </figure>
 
-        <div className="mt-10 flex items-center justify-between text-[10px] tracking-[0.25em] uppercase text-white/30">
+            {/* Next peek */}
+            {total > 1 && (
+              <button
+                aria-label="Next photo"
+                onClick={() => go(1)}
+                className="absolute right-0 lg:right-4 top-1/2 -translate-y-1/2 z-10 w-[22%] sm:w-[20%] lg:w-[18%] aspect-[3/4] opacity-40 hover:opacity-70 transition-opacity overflow-hidden bg-neutral-900"
+                style={{ filter: "blur(1px)" }}
+              >
+                <img
+                  src={photos[nextIdx].src}
+                  alt={photos[nextIdx].alt}
+                  className="w-full h-full object-cover"
+                />
+              </button>
+            )}
+          </div>
+        )}
+
+        {total > 0 && (
+          <div className="mt-8 flex items-center justify-center gap-6">
+            <button
+              onClick={() => go(-1)}
+              className="text-[10px] tracking-[0.3em] uppercase text-white/60 hover:text-white"
+            >
+              ← Prev
+            </button>
+            <span className="text-[10px] tracking-[0.3em] uppercase text-white/40 tabular-nums">
+              {String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+            </span>
+            <button
+              onClick={() => go(1)}
+              className="text-[10px] tracking-[0.3em] uppercase text-white/60 hover:text-white"
+            >
+              Next →
+            </button>
+          </div>
+        )}
+
+        <div className="mt-16 flex items-center justify-between text-[10px] tracking-[0.25em] uppercase text-white/30">
           <span>© {new Date().getFullYear()} Gordon Liu</span>
           <span>Built with care</span>
         </div>
@@ -315,6 +365,7 @@ function Gallery() {
     </section>
   );
 }
+
 
 function HomePage() {
   return (
