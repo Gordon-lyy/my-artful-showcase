@@ -246,15 +246,20 @@ function Work() {
 }
 
 const galleryImages = [
-  { src: photography.url, alt: "Camera resting on a guitar fretboard", span: "lg:col-span-2 lg:row-span-2" },
+  { src: photoCliff.url, alt: "Photographer beneath a cliff, mountain view", span: "lg:col-span-2 lg:row-span-2" },
+  { src: photoCastle.url, alt: "Edinburgh Castle under dramatic clouds", span: "lg:col-span-2" },
+  { src: photoStation.url, alt: "Edinburgh Waverley station and old town", span: "lg:row-span-2" },
+  { src: photography.url, alt: "Camera resting on a guitar fretboard", span: "" },
   { src: music.url, alt: "Drum kit lit by warm red stage lights", span: "" },
   { src: animation.url, alt: "Hand-drawn storyboard sketch", span: "" },
-  { src: portrait.url, alt: "Portrait holding a guitar", span: "lg:col-span-2" },
-  { src: photography.url, alt: "Lens detail", span: "" },
-  { src: music.url, alt: "Stage lights", span: "" },
 ];
 
 function Gallery() {
+  const [userPhotos, setUserPhotos] = useState<UserPhoto[]>([]);
+  useEffect(() => {
+    setUserPhotos(loadUserPhotos());
+  }, []);
+
   return (
     <section
       id="gallery"
@@ -276,7 +281,7 @@ function Gallery() {
         <div className="grid grid-cols-2 lg:grid-cols-4 auto-rows-[180px] lg:auto-rows-[220px] gap-2 lg:gap-3">
           {galleryImages.map((img, i) => (
             <figure
-              key={i}
+              key={`g-${i}`}
               className={`relative overflow-hidden bg-neutral-900 group ${img.span}`}
             >
               <img
@@ -288,7 +293,22 @@ function Gallery() {
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
             </figure>
           ))}
+          {userPhotos.map((p) => (
+            <figure
+              key={p.id}
+              className="relative overflow-hidden bg-neutral-900 group"
+            >
+              <img
+                src={p.dataUrl}
+                alt={p.alt}
+                loading="lazy"
+                className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
+            </figure>
+          ))}
         </div>
+
 
         <div className="mt-10 flex items-center justify-between text-[10px] tracking-[0.25em] uppercase text-white/30">
           <span>© {new Date().getFullYear()} Gordon Liu</span>
