@@ -1,8 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import portrait from "../assets/portrait.jpg.asset.json";
 import photography from "../assets/photography.jpg.asset.json";
 import music from "../assets/music.jpg.asset.json";
 import animation from "../assets/animation.jpg.asset.json";
+import photoCliff from "../assets/photo-cliff.jpg.asset.json";
+import photoStation from "../assets/photo-edinburgh-station.jpg.asset.json";
+import photoCastle from "../assets/photo-edinburgh-castle.jpg.asset.json";
+import { loadUserPhotos, type UserPhoto } from "./admin";
 
 export const Route = createFileRoute("/")({
   head: () => ({
