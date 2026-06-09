@@ -129,7 +129,7 @@ function About() {
             {[
               { k: "Guitar", v: "Lead" },
               { k: "Drums", v: "Want to be Metronome" },
-              { k: "Tools", v: "Camera · Pen" },
+              { k: "PHOTOGRAPHY", v: "Focus" },
             ].map((s) => (
               <div key={s.k}>
                 <div className="text-[10px] tracking-[0.25em] uppercase text-white/40">
