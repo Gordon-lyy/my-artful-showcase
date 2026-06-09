@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, useCallback } from "react";
 import portrait from "../assets/portrait.jpg.asset.json";
-import photography from "../assets/photography.jpg.asset.json";
-import music from "../assets/music.jpg.asset.json";
-import animation from "../assets/animation.jpg.asset.json";
+import workAnimation from "../assets/work-animation.png.asset.json";
+import workBand from "../assets/work-band.png.asset.json";
+import workSunset from "../assets/work-sunset.jpg.asset.json";
 import { loadGalleryPhotos, type GalleryPhoto } from "./admin";
 
 export const Route = createFileRoute("/")({
@@ -163,8 +163,8 @@ const works: Work[] = [
     caption:
       "Tinkering with timelines and easing curves — video disguised as magic.",
     tag: "KEY",
-    image: animation.url,
-    alt: "Hand-drawn storyboard sketch on a dark surface",
+    image: workAnimation.url,
+    alt: "Hand-drawn sketch of an anime character in a notebook",
   },
   {
     id: "echo-chamber",
@@ -173,8 +173,8 @@ const works: Work[] = [
     caption:
       "Guitar and drums for a small band that plays bigger than it should.",
     tag: "FRAME",
-    image: music.url,
-    alt: "Drum kit lit by warm red stage lights",
+    image: workBand.url,
+    alt: "Group photo of the band Echo Chamber backstage",
   },
   {
     id: "photography-work",
@@ -183,8 +183,8 @@ const works: Work[] = [
     caption:
       "Observing the world through a narrow aperture — focus, blur, and the beauty of imperfection.",
     tag: "BEAT",
-    image: photography.url,
-    alt: "Camera resting on a guitar fretboard",
+    image: workSunset.url,
+    alt: "Venice skyline at sunset with the Campanile silhouette",
   },
 ];
 
