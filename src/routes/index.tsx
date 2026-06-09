@@ -171,20 +171,20 @@ const works: Work[] = [
     sub: "02.2",
     title: "Echo Chamber",
     caption:
-      "Guitar and drums for a small band that plays bigger than it should.",
+      "Observing the world through a narrow aperture — focus, blur, and the beauty of imperfection.",
     tag: "FRAME",
-    image: workBand.url,
-    alt: "Group photo of the band Echo Chamber backstage",
+    image: workSunset.url,
+    alt: "Venice skyline at sunset with the Campanile silhouette",
   },
   {
     id: "photography-work",
     sub: "02.3",
     title: "Photography",
     caption:
-      "Observing the world through a narrow aperture — focus, blur, and the beauty of imperfection.",
+      "Guitar and drums for a small band that plays bigger than it should.",
     tag: "BEAT",
-    image: workSunset.url,
-    alt: "Venice skyline at sunset with the Campanile silhouette",
+    image: workBand.url,
+    alt: "Group photo of the band Echo Chamber backstage",
   },
 ];
 
