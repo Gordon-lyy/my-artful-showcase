@@ -1,21 +1,35 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import photoCliff from "../assets/photo-cliff.jpg.asset.json";
-import photoStation from "../assets/photo-edinburgh-station.jpg.asset.json";
-import photoCastle from "../assets/photo-edinburgh-castle.jpg.asset.json";
+import g1 from "../assets/gal-dsc6025.jpg.asset.json";
+import g2 from "../assets/gal-dsc6098-2.jpg.asset.json";
+import g3 from "../assets/gal-dsc01130.jpg.asset.json";
+import g4 from "../assets/gal-dsc01177.jpg.asset.json";
+import g5 from "../assets/gal-dsc01290-2.jpg.asset.json";
+import g6 from "../assets/gal-dsc01311.jpg.asset.json";
+import g7 from "../assets/gal-dsc01401-2.jpg.asset.json";
+import g8 from "../assets/gal-dsc07514.jpg.asset.json";
+import g9 from "../assets/gal-dsc07646.jpg.asset.json";
+import g10 from "../assets/gal-dsc08629.jpg.asset.json";
 
 const PASSWORD = "admin114514";
-const USER_KEY = "gallery_user_photos_v1";
-const HIDDEN_KEY = "gallery_hidden_defaults_v1";
+const USER_KEY = "gallery_user_photos_v2";
+const HIDDEN_KEY = "gallery_hidden_defaults_v2";
 const AUTH_KEY = "gallery_admin_auth_v1";
 
 export type UserPhoto = { id: string; dataUrl: string; alt: string };
 export type GalleryPhoto = { id: string; src: string; alt: string; kind: "default" | "user" };
 
 export const DEFAULT_PHOTOS: GalleryPhoto[] = [
-  { id: "default-cliff", src: photoCliff.url, alt: "Photographer beneath a cliff, mountain view", kind: "default" },
-  { id: "default-castle", src: photoCastle.url, alt: "Edinburgh Castle under dramatic clouds", kind: "default" },
-  { id: "default-station", src: photoStation.url, alt: "Edinburgh Waverley station and old town", kind: "default" },
+  { id: "default-6025", src: g1.url, alt: "Mountain river valley with green peaks", kind: "default" },
+  { id: "default-6098", src: g2.url, alt: "Person photographing from a cliffside table", kind: "default" },
+  { id: "default-01130", src: g3.url, alt: "King's Cross station arched glass roof", kind: "default" },
+  { id: "default-01177", src: g4.url, alt: "Pigeon on a ledge with Edinburgh skyline", kind: "default" },
+  { id: "default-01290", src: g5.url, alt: "Edinburgh Waverley station and old town", kind: "default" },
+  { id: "default-01311", src: g6.url, alt: "Green hillside under a wide cloudy sky", kind: "default" },
+  { id: "default-01401", src: g7.url, alt: "Edinburgh Castle under dramatic clouds", kind: "default" },
+  { id: "default-07514", src: g8.url, alt: "Sunlit Milan street with balconies and plants", kind: "default" },
+  { id: "default-07646", src: g9.url, alt: "Venice canal with gondola and Campanile", kind: "default" },
+  { id: "default-08629", src: g10.url, alt: "Swimmer diving from a starting block", kind: "default" },
 ];
 
 export function loadUserPhotos(): UserPhoto[] {
