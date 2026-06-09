@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, useCallback } from "react";
 import portrait from "../assets/portrait.jpg.asset.json";
+import heroBg from "../assets/hero-lines.webp.asset.json";
 import workAnimation from "../assets/work-animation.png.asset.json";
 import workBand from "../assets/work-band.png.asset.json";
 import workSunset from "../assets/work-sunset.jpg.asset.json";
@@ -63,14 +64,13 @@ function Hero() {
       className="relative min-h-screen flex items-end overflow-hidden bg-black"
     >
       <img
-        src={portrait.url}
-        alt="Portrait of Gordon Liu holding a guitar"
-        width={1280}
-        height={1600}
-        className="absolute inset-0 w-full h-full object-cover object-center opacity-80"
+        src={heroBg.url}
+        alt=""
+        width={1920}
+        height={1080}
+        className="absolute inset-0 w-full h-full object-cover object-center opacity-90"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
       <div className="relative z-10 mx-auto max-w-7xl w-full px-6 lg:px-10 pb-20 lg:pb-28">
         <div className="flex items-center gap-3 mb-6">

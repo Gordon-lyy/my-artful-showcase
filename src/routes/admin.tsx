@@ -10,6 +10,8 @@ import g7 from "../assets/gal-dsc01401-2.jpg.asset.json";
 import g8 from "../assets/gal-dsc07514.jpg.asset.json";
 import g9 from "../assets/gal-dsc07646.jpg.asset.json";
 import g10 from "../assets/gal-dsc08629.jpg.asset.json";
+import g11 from "../assets/gal-f1-mercedes.png.asset.json";
+import g12 from "../assets/gal-f1-redbull.png.asset.json";
 
 const PASSWORD = "admin114514";
 const USER_KEY = "gallery_user_photos_v2";
@@ -30,6 +32,8 @@ export const DEFAULT_PHOTOS: GalleryPhoto[] = [
   { id: "default-07514", src: g8.url, alt: "Sunlit Milan street with balconies and plants", kind: "default" },
   { id: "default-07646", src: g9.url, alt: "Venice canal with gondola and Campanile", kind: "default" },
   { id: "default-08629", src: g10.url, alt: "Swimmer diving from a starting block", kind: "default" },
+  { id: "default-f1-mercedes", src: g11.url, alt: "Mercedes F1 car on track with Qatar signage", kind: "default" },
+  { id: "default-f1-redbull", src: g12.url, alt: "Red Bull F1 cars in parc fermé with photographers", kind: "default" },
 ];
 
 export function loadUserPhotos(): UserPhoto[] {
