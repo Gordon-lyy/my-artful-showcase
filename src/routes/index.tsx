@@ -167,9 +167,9 @@ const works: Work[] = [
     alt: "Hand-drawn sketch of an anime character in a notebook",
   },
   {
-    id: "echo-chamber",
+    id: "photography-work",
     sub: "02.2",
-    title: "Echo Chamber",
+    title: "Photography",
     caption:
       "Observing the world through a narrow aperture — focus, blur, and the beauty of imperfection.",
     tag: "FRAME",
@@ -177,9 +177,9 @@ const works: Work[] = [
     alt: "Venice skyline at sunset with the Campanile silhouette",
   },
   {
-    id: "photography-work",
+    id: "echo-chamber",
     sub: "02.3",
-    title: "Photography",
+    title: "Echo Chamber",
     caption:
       "Guitar and drums for a small band that plays bigger than it should.",
     tag: "BEAT",
