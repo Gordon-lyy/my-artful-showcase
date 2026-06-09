@@ -3,9 +3,6 @@ import { useEffect, useState } from "react";
 import photoCliff from "../assets/photo-cliff.jpg.asset.json";
 import photoStation from "../assets/photo-edinburgh-station.jpg.asset.json";
 import photoCastle from "../assets/photo-edinburgh-castle.jpg.asset.json";
-import photography from "../assets/photography.jpg.asset.json";
-import music from "../assets/music.jpg.asset.json";
-import animation from "../assets/animation.jpg.asset.json";
 
 const PASSWORD = "admin114514";
 const USER_KEY = "gallery_user_photos_v1";
@@ -19,9 +16,6 @@ export const DEFAULT_PHOTOS: GalleryPhoto[] = [
   { id: "default-cliff", src: photoCliff.url, alt: "Photographer beneath a cliff, mountain view", kind: "default" },
   { id: "default-castle", src: photoCastle.url, alt: "Edinburgh Castle under dramatic clouds", kind: "default" },
   { id: "default-station", src: photoStation.url, alt: "Edinburgh Waverley station and old town", kind: "default" },
-  { id: "default-photography", src: photography.url, alt: "Camera resting on a guitar fretboard", kind: "default" },
-  { id: "default-music", src: music.url, alt: "Drum kit lit by warm red stage lights", kind: "default" },
-  { id: "default-animation", src: animation.url, alt: "Hand-drawn storyboard sketch", kind: "default" },
 ];
 
 export function loadUserPhotos(): UserPhoto[] {
