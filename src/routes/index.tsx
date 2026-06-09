@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, useCallback } from "react";
 import portrait from "../assets/portrait.jpg.asset.json";
-import photography from "../assets/photography.jpg.asset.json";
-import music from "../assets/music.jpg.asset.json";
-import animation from "../assets/animation.jpg.asset.json";
+import workAnimation from "../assets/work-animation.png.asset.json";
+import workBand from "../assets/work-band.png.asset.json";
+import workSunset from "../assets/work-sunset.jpg.asset.json";
 import { loadGalleryPhotos, type GalleryPhoto } from "./admin";
 
 export const Route = createFileRoute("/")({
