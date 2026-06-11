@@ -3,6 +3,7 @@ import { useEffect, useState, useCallback } from "react";
 import portrait from "../assets/portrait.jpg.asset.json";
 import heroBg from "../assets/hero-lines.webp.asset.json";
 import workAnimation from "../assets/work-animation.png.asset.json";
+import guitarImg from "../assets/guitar.png.asset.json";
 import workBand from "../assets/work-band.png.asset.json";
 import workSunset from "../assets/work-sunset.jpg.asset.json";
 import { loadGalleryPhotos, type GalleryPhoto } from "./admin";
@@ -32,6 +33,7 @@ function Nav() {
   const items = [
     { href: "#about", label: "About" },
     { href: "#work", label: "Work" },
+    { href: "#guitar", label: "Guitar" },
     { href: "#gallery", label: "Gallery" },
   ];
   return (
@@ -239,6 +241,73 @@ function Work() {
   );
 }
 
+const guitarSpecs: { label: string; value: string }[] = [
+  { label: "Pickups", value: "EMG 81 Active Humbucker" },
+  { label: "Fretboard", value: "Ebony" },
+  { label: "Neck", value: "Rosewood" },
+  { label: "Bridge", value: "Gotoh" },
+  { label: "Locking Nut", value: "Gotoh" },
+  { label: "Body", value: "3D Printed" },
+];
+
+function Guitar() {
+  return (
+    <section
+      id="guitar"
+      className="bg-black text-white py-24 lg:py-32 border-t border-white/5"
+    >
+      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+        <div className="flex items-center gap-3 mb-4">
+          <span className="h-px w-8 bg-[oklch(0.72_0.18_55)]" />
+          <span className="text-[10px] tracking-[0.3em] uppercase text-white/50">
+            03 — Instrument
+          </span>
+        </div>
+        <h2 className="text-3xl lg:text-5xl font-light mb-16">
+          The Axe.
+          <span className="text-white/50"> Custom build.</span>
+        </h2>
+
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          <div className="lg:col-span-7 overflow-hidden">
+            <div className="aspect-[16/10] overflow-hidden bg-neutral-900">
+              <img
+                src={guitarImg.url}
+                alt="Custom 3D-printed electric guitar with EMG 81 pickups"
+                loading="lazy"
+                width={1600}
+                height={1000}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+          <div className="lg:col-span-5">
+            <p className="text-white/60 leading-relaxed mb-8">
+              A one-of-a-kind instrument — 3D-printed body, active electronics,
+              and hardware tuned for high-gain precision.
+            </p>
+            <dl className="divide-y divide-white/10 border-t border-b border-white/10">
+              {guitarSpecs.map((s) => (
+                <div
+                  key={s.label}
+                  className="grid grid-cols-3 gap-4 py-4"
+                >
+                  <dt className="col-span-1 text-[10px] tracking-[0.25em] uppercase text-white/40">
+                    {s.label}
+                  </dt>
+                  <dd className="col-span-2 text-sm text-white">{s.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+
 function Gallery() {
   const [photos, setPhotos] = useState<GalleryPhoto[]>([]);
   const [index, setIndex] = useState(0);
@@ -277,7 +346,7 @@ function Gallery() {
         <div className="flex items-center gap-3 mb-4">
           <span className="h-px w-8 bg-[oklch(0.72_0.18_55)]" />
           <span className="text-[10px] tracking-[0.3em] uppercase text-white/50">
-            03 — Gallery
+            04 — Gallery
           </span>
         </div>
         <h2 className="text-5xl sm:text-7xl lg:text-8xl font-light tracking-tight mb-16 leading-[0.95]">
@@ -372,6 +441,7 @@ function HomePage() {
       <Hero />
       <About />
       <Work />
+      <Guitar />
       <Gallery />
     </main>
   );
