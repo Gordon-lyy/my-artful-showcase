@@ -33,6 +33,7 @@ function Nav() {
   const items = [
     { href: "#about", label: "About" },
     { href: "#work", label: "Work" },
+    { href: "#guitar", label: "Guitar" },
     { href: "#gallery", label: "Gallery" },
   ];
   return (
