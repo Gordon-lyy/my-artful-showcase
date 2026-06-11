@@ -33,7 +33,7 @@ function Nav() {
   const items = [
     { href: "#about", label: "About" },
     { href: "#work", label: "Work" },
-    { href: "#guitar", label: "Guitar" },
+    { href: "#guitar", label: "Instruments" },
     { href: "#gallery", label: "Gallery" },
   ];
   return (
@@ -260,12 +260,12 @@ function Guitar() {
         <div className="flex items-center gap-3 mb-4">
           <span className="h-px w-8 bg-[oklch(0.72_0.18_55)]" />
           <span className="text-[10px] tracking-[0.3em] uppercase text-white/50">
-            03 — Instrument
+            03 — Instruments
           </span>
         </div>
         <h2 className="text-3xl lg:text-5xl font-light mb-16">
           The Axe.
-          <span className="text-white/50"> Custom build.</span>
+          <span className="text-white/50"> & the Lens.</span>
         </h2>
 
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
