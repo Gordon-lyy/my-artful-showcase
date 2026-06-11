@@ -301,6 +301,41 @@ function Guitar() {
             </dl>
           </div>
         </div>
+
+        <div className="mt-24 lg:mt-32 grid lg:grid-cols-12 gap-10 lg:gap-16">
+          <div className="lg:col-span-5">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="h-px w-8 bg-[oklch(0.72_0.18_55)]" />
+              <span className="text-[10px] tracking-[0.3em] uppercase text-white/50">
+                03.2 — Camera
+              </span>
+            </div>
+            <h3 className="text-2xl lg:text-3xl font-light mb-6">
+              The Lens.
+              <span className="text-white/50"> Full-frame mirrorless.</span>
+            </h3>
+            <p className="text-white/60 leading-relaxed">
+              A Sony A7M4 paired with two G Master II zooms — wide enough for
+              the street, long enough for the stage.
+            </p>
+          </div>
+          <div className="lg:col-span-7">
+            <dl className="divide-y divide-white/10 border-t border-b border-white/10">
+              {[
+                { label: "Body", value: "Sony A7M4" },
+                { label: "Standard Zoom", value: "Sony 24–70mm F2.8 GM II" },
+                { label: "Tele Zoom", value: "Sony 70–200mm F2.8 GM II" },
+              ].map((s) => (
+                <div key={s.label} className="grid grid-cols-3 gap-4 py-4">
+                  <dt className="col-span-1 text-[10px] tracking-[0.25em] uppercase text-white/40">
+                    {s.label}
+                  </dt>
+                  <dd className="col-span-2 text-sm text-white">{s.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
       </div>
     </section>
   );
