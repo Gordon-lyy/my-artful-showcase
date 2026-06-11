@@ -4,6 +4,7 @@ import portrait from "../assets/portrait.jpg.asset.json";
 import heroBg from "../assets/hero-lines.webp.asset.json";
 import workAnimation from "../assets/work-animation.png.asset.json";
 import guitarImg from "../assets/guitar.png.asset.json";
+import cameraImg from "../assets/camera-a7m4.png.asset.json";
 import workBand from "../assets/work-band.png.asset.json";
 import workSunset from "../assets/work-sunset.jpg.asset.json";
 import { loadGalleryPhotos, type GalleryPhoto } from "./admin";
