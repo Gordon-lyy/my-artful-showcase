@@ -4,6 +4,7 @@ import portrait from "../assets/portrait.jpg.asset.json";
 import heroBg from "../assets/hero-lines.webp.asset.json";
 import workAnimation from "../assets/work-animation.png.asset.json";
 import guitarImg from "../assets/guitar.png.asset.json";
+import cameraImg from "../assets/camera-a7m4.png.asset.json";
 import workBand from "../assets/work-band.png.asset.json";
 import workSunset from "../assets/work-sunset.jpg.asset.json";
 import { loadGalleryPhotos, type GalleryPhoto } from "./admin";
@@ -270,6 +271,12 @@ function Guitar() {
 
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           <div className="lg:col-span-7 overflow-hidden">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="h-px w-8 bg-[oklch(0.72_0.18_55)]" />
+              <span className="text-[10px] tracking-[0.3em] uppercase text-white/50">
+                03.1 — Guitar
+              </span>
+            </div>
             <div className="aspect-[16/10] overflow-hidden bg-neutral-900">
               <img
                 src={guitarImg.url}
@@ -282,6 +289,10 @@ function Guitar() {
             </div>
           </div>
           <div className="lg:col-span-5">
+            <h3 className="text-2xl lg:text-3xl font-light mb-6">
+              The Axe.
+              <span className="text-white/50"> Custom build.</span>
+            </h3>
             <p className="text-white/60 leading-relaxed mb-8">
               A one-of-a-kind instrument — 3D-printed body, active electronics,
               and hardware tuned for high-gain precision.
@@ -314,9 +325,19 @@ function Guitar() {
               The Lens.
               <span className="text-white/50"> Full-frame mirrorless.</span>
             </h3>
-            <p className="text-white/60 leading-relaxed">
+            <p className="text-white/60 leading-relaxed mb-8">
               A Sony A7M4 paired with two G Master II zooms.
             </p>
+            <div className="aspect-[4/3] overflow-hidden bg-neutral-900">
+              <img
+                src={cameraImg.url}
+                alt="Sony A7M4 full-frame mirrorless camera body"
+                loading="lazy"
+                width={1200}
+                height={900}
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
           <div className="lg:col-span-7">
             <dl className="divide-y divide-white/10 border-t border-b border-white/10">
