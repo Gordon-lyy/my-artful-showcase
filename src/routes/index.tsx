@@ -315,8 +315,7 @@ function Guitar() {
               <span className="text-white/50"> Full-frame mirrorless.</span>
             </h3>
             <p className="text-white/60 leading-relaxed">
-              A Sony A7M4 paired with two G Master II zooms — wide enough for
-              the street, long enough for the stage.
+              A Sony A7M4 paired with two G Master II zooms.
             </p>
           </div>
           <div className="lg:col-span-7">
