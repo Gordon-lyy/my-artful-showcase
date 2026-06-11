@@ -441,6 +441,7 @@ function HomePage() {
       <Hero />
       <About />
       <Work />
+      <Guitar />
       <Gallery />
     </main>
   );
