@@ -280,6 +280,7 @@ function Gallery() {
           <span className="h-px w-8 bg-[oklch(0.72_0.18_55)]" />
           <span className="text-[10px] tracking-[0.3em] uppercase text-white/50">
             03 — Gallery
+
           </span>
         </div>
         <h2 className="text-5xl sm:text-7xl lg:text-8xl font-light tracking-tight mb-16 leading-[0.95]">
