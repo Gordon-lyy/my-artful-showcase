@@ -325,9 +325,19 @@ function Guitar() {
               The Lens.
               <span className="text-white/50"> Full-frame mirrorless.</span>
             </h3>
-            <p className="text-white/60 leading-relaxed">
+            <p className="text-white/60 leading-relaxed mb-8">
               A Sony A7M4 paired with two G Master II zooms.
             </p>
+            <div className="aspect-[4/3] overflow-hidden bg-neutral-900">
+              <img
+                src={cameraImg.url}
+                alt="Sony A7M4 full-frame mirrorless camera body"
+                loading="lazy"
+                width={1200}
+                height={900}
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
           <div className="lg:col-span-7">
             <dl className="divide-y divide-white/10 border-t border-b border-white/10">
